@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { init } from './firebase/firebase-init';
+import Header from './header';
+import Main from './main';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    // firebase must be loaded at the beginning
+    init(this.authObserver);
+    this.state = { user: null };
+  }
+  authObserver = (user) => {
+    console.log('auth state changed-', user);
+    this.setState({ user });
+  };
+  render() {
+    return (
+      <div className="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <Header user={this.state.user} />
+        <Main />
+      </div>
+    );
+  }
 }
 
 export default App;
