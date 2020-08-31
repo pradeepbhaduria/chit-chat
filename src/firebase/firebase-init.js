@@ -15,9 +15,12 @@ const firebaseConfig = {
 
 const init = (authObserver) => {
   console.log('init firebase');
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-  initFirebaseAuth(authObserver);
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+
+    firebase.analytics();
+    initFirebaseAuth(authObserver);
+  }
 };
 
 export { init };

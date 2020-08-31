@@ -1,5 +1,6 @@
 import React from 'react';
 import { signIn, signOut } from './firebase/firebase-auth';
+import { addSizeToGoogleProfilePic } from './util';
 
 const Header = ({ user }) => {
   let userPicElementStyle = {};
@@ -8,15 +9,6 @@ const Header = ({ user }) => {
     // TODO 10: Save the device token in the realtime datastore
   };
 
-  const addSizeToGoogleProfilePic = (url) => {
-    if (
-      url.indexOf('googleusercontent.com') !== -1 &&
-      url.indexOf('?') === -1
-    ) {
-      return url + '?sz=150';
-    }
-    return url;
-  };
   if (user) {
     // User is signed in!
     const { photoURL } = user;

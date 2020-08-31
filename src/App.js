@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <div className="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <Header user={this.state.user} />
-        <Main />
+        <Main user={this.state.user} />
       </div>
     );
   }
