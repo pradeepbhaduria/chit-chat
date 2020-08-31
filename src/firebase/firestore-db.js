@@ -3,16 +3,19 @@ import 'firebase/firestore';
 
 const COLLECTION_NAME = 'messages';
 
-const saveMessageInDB = (messageText, userName, profilePicUrl) => {
+const saveMessageInDB = (messageText, userName, profilePicUrl, imageUrl) => {
+  const messageContent = {
+    name: userName,
+    profilePicUrl: profilePicUrl,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  };
+  if (messageText) messageContent.text = messageText;
+  if (imageUrl) messageContent.imageUrl = imageUrl;
+
   return firebase
     .firestore()
     .collection(COLLECTION_NAME)
-    .add({
-      name: userName,
-      text: messageText,
-      profilePicUrl: profilePicUrl,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    })
+    .add(messageContent)
     .catch((error) => {
       console.error('Error writing new message to database', error);
     });
@@ -29,7 +32,6 @@ const retrieveMessagesFromDB = (cb) => {
       snapshot.forEach(function (doc) {
         messages.push({ id: doc.id, ...doc.data() });
       });
-      console.log('messages retrieved from firestore-', messages);
       cb(messages);
     });
 };

@@ -1,16 +1,17 @@
 import React, { useState, useRef } from 'react';
-import { saveMessageInDB } from './firebase/firebase-db';
+import { saveMessageInDB } from './firebase/firestore-db';
 import Messages from './messages';
+import { ImageUploadForm } from './forms';
 
 const Main = ({ user }) => {
   const signInSnackbarElement = useRef();
   const currentMessageElement = useRef();
   const [currentMessage, setCurrentMessage] = useState('');
 
-  const showSignInMessage = () => {
+  const showToastMessage = (message) => {
     // Display a message to the user using a Toast.
     var data = {
-      message: 'You must sign-in first',
+      message,
       timeout: 2000,
     };
     signInSnackbarElement.current.MaterialSnackbar.showSnackbar(data);
@@ -25,7 +26,7 @@ const Main = ({ user }) => {
   const onMessageFormSubmit = (event) => {
     event.preventDefault();
     if (!user) {
-      showSignInMessage();
+      showToastMessage('You must sign-in first');
       return;
     }
 
@@ -73,21 +74,7 @@ const Main = ({ user }) => {
                 Send
               </button>
             </form>
-            <form id="image-form" action="#">
-              <input
-                id="mediaCapture"
-                type="file"
-                accept="image/*"
-                capture="camera"
-              />
-              <button
-                id="submitImage"
-                title="Add an image"
-                className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white"
-              >
-                <i className="material-icons">image</i>
-              </button>
-            </form>
+            <ImageUploadForm showToastMessage={showToastMessage} user={user} />
           </div>
         </div>
 

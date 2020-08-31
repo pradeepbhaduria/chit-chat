@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { retrieveMessagesFromDB } from './firebase/firebase-db';
+import { retrieveMessagesFromDB } from './firebase/firestore-db';
 import { addSizeToGoogleProfilePic } from './util';
 
 const Messages = () => {
@@ -41,7 +41,7 @@ const Messages = () => {
                   <div className="pic" style={userPicElementStyle}></div>
                 </div>
                 <div className="message">
-                  {text ? text : <image src={imageUrl} />}
+                  {text ? text : <img src={imageUrl} alt="test" />}
                 </div>
                 <div className="name">{name}</div>
               </div>
