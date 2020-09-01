@@ -1,6 +1,8 @@
 import * as firebase from 'firebase/app';
 import 'firebase/firestore';
 
+import { getCurrentUser } from './firebase-auth';
+
 const COLLECTION_NAME = 'messages';
 
 const saveMessageInDB = (messageText, userName, profilePicUrl, imageUrl) => {
@@ -36,4 +38,12 @@ const retrieveMessagesFromDB = (cb) => {
     });
 };
 
-export { retrieveMessagesFromDB, saveMessageInDB };
+const saveFCMTokenInDB = (currentToken) => {
+  firebase
+    .firestore()
+    .collection('fcmTokens')
+    .doc(currentToken)
+    .set({ uid: getCurrentUser().uid });
+};
+
+export { retrieveMessagesFromDB, saveMessageInDB, saveFCMTokenInDB };

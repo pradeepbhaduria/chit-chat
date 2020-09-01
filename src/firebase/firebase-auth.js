@@ -10,21 +10,30 @@ const signOut = () => {
   firebase.auth().signOut();
 };
 
-function getProfilePicUrl() {
+const getProfilePicUrl = () => {
   return (
     (firebase.auth().currentUser && firebase.auth().currentUser.photoURL) ||
     '/images/profile_placeholder.png'
   );
-}
+};
 
 // Returns the signed-in user's display name.
-function getUserName() {
+const getUserName = () => {
   return firebase.auth().currentUser && firebase.auth().currentUser.displayName;
-}
+};
+
+const getCurrentUser = () => firebase.auth().currentUser;
 
 // Listen to auth state changes. Fired every time user signs in or signs out
 const initFirebaseAuth = (authStateObserver) => {
   firebase.auth().onAuthStateChanged(authStateObserver);
 };
 
-export { signIn, signOut, getProfilePicUrl, getUserName, initFirebaseAuth };
+export {
+  getCurrentUser,
+  signIn,
+  signOut,
+  getProfilePicUrl,
+  getUserName,
+  initFirebaseAuth,
+};

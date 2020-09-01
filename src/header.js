@@ -1,14 +1,9 @@
 import React from 'react';
-import { signIn, signOut } from './firebase/firebase-auth';
+import { saveMessagingDeviceToken, signIn, signOut } from './firebase';
 import { addSizeToGoogleProfilePic } from './util';
 
 const Header = ({ user }) => {
   let userPicElementStyle = {};
-
-  const saveMessagingDeviceToken = () => {
-    // TODO 10: Save the device token in the realtime datastore
-  };
-
   if (user) {
     // User is signed in!
     const { photoURL } = user;
