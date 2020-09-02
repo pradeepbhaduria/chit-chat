@@ -3,14 +3,14 @@ import 'firebase/analytics';
 import { initFirebaseAuth } from './firebase-auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAisBUwzn1o-qrYXFCgfzaPusHNWn3Y4ks',
-  authDomain: 'chit-chat-abd92.firebaseapp.com',
-  databaseURL: 'https://chit-chat-abd92.firebaseio.com',
-  projectId: 'chit-chat-abd92',
-  storageBucket: 'chit-chat-abd92.appspot.com',
-  messagingSenderId: '796260349168',
-  appId: '1:796260349168:web:266bee94b687778c6efe35',
-  measurementId: 'G-13Q50GX7E7',
+  apiKey: 'api-key',
+  authDomain: 'project-id.firebaseapp.com',
+  databaseURL: 'https://project-id.firebaseio.com',
+  projectId: 'project-id',
+  storageBucket: 'project-id.appspot.com',
+  messagingSenderId: 'sender-id',
+  appId: 'app-id',
+  measurementId: 'G-measurement-id',
 };
 
 const init = (authObserver) => {

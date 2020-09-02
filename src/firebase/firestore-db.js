@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import { getCurrentUser } from './firebase-auth';
 
 const COLLECTION_NAME = 'messages';
+const MESSAGE_LIMIT = 100;
 
 const saveMessageInDB = (messageText, userName, profilePicUrl, imageUrl) => {
   const messageContent = {
@@ -28,7 +29,7 @@ const retrieveMessagesFromDB = (cb) => {
     .firestore()
     .collection(COLLECTION_NAME)
     .orderBy('timestamp', 'asc')
-    .limit(12)
+    .limit(MESSAGE_LIMIT)
     .onSnapshot((snapshot) => {
       const messages = [];
       snapshot.forEach(function (doc) {
