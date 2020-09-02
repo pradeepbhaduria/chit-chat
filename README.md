@@ -1,5 +1,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This is a demo firebase messaging progressive web app using
+
+1. Firestore
+2. Cloud Storage
+3. Cloud functions
+4. Firebase notifications
+
 ## Available Scripts
 
 In the project directory, you can run:
